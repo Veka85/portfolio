@@ -1,0 +1,113 @@
+.contact {
+  display: grid;
+  gap: var(--space-2xl);
+  grid-template-columns: 1fr;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.contact__info {
+  order: 2;
+}
+
+.contact__form {
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.contact__headline {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.contact__text {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+}
+
+.contact__social {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.contact__socialLink {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  transition: color var(--transition-base);
+}
+
+.contact__socialLink:hover {
+  color: var(--color-text);
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.contact__label {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.contact__input,
+.contact__textarea {
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.contact__input::placeholder,
+.contact__textarea::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
+.contact__input:hover,
+.contact__textarea:hover {
+  border-color: var(--color-border);
+}
+
+.contact__input:focus,
+.contact__textarea:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-accent-muted);
+}
+
+.contact__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact__error {
+  font-size: 0.8125rem;
+  color: #f87171;
+}
+
+@media (min-width: 768px) {
+  .contact {
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-3xl);
+  }
+
+  .contact__info {
+    order: 1;
+  }
+
+  .contact__form {
+    order: 2;
+  }
+}
