@@ -16,8 +16,6 @@ const initialErrors = {
   message: '',
 }
 
-const encode = (data) => new URLSearchParams(data).toString()
-
 export default function ContactSection() {
   const [formData, setFormData] = useState(initialFormState)
   const [errors, setErrors] = useState(initialErrors)
@@ -58,16 +56,19 @@ export default function ContactSection() {
     e.preventDefault()
     if (!validate()) return
 
+    const form = e.currentTarget
+    const formPayload = new FormData(form)
+
     try {
-      await fetch('/', {
+      const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({
-          'form-name': 'contact',
-          'bot-field': '',
-          ...formData,
-        }),
+        body: new URLSearchParams(formPayload).toString(),
       })
+
+      if (!response.ok) {
+        throw new Error('Form submission failed')
+      }
 
       setFormData(initialFormState)
       setErrors(initialErrors)
@@ -114,7 +115,12 @@ export default function ContactSection() {
           noValidate
         >
           <input type="hidden" name="form-name" value="contact" />
-          <input type="hidden" name="bot-field" />
+          <p hidden aria-hidden="true">
+            <label>
+              Do not fill this out:
+              <input name="bot-field" />
+            </label>
+          </p>
           <div className={styles.contact__field}>
             <label htmlFor="contact-name" className={styles.contact__label}>
               Name
