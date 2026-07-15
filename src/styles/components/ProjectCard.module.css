@@ -49,13 +49,22 @@
 
 .card__actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
+  flex-wrap: nowrap;
+  gap: var(--space-sm);
 }
 
 .card__actions a,
 .card__actions button {
   flex: 0 0 auto;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.2;
+}
+
+@media (max-width: 640px) {
+  .card__actions {
+    flex-wrap: wrap;
+  }
 }
 
 /* Featured variant - larger, premium feel */

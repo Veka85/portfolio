@@ -41,7 +41,7 @@ export default function Navbar() {
     >
       <div className={styles.navbar__container}>
         <a href="#" className={styles.navbar__brand} onClick={(e) => handleClick(e, 'hero')}>
-          VK
+          <img src="/logo.png" alt="Vedran Kovacevic logo" className={styles.navbar__logo} />
         </a>
         <ul className={styles.navbar__links}>
           {navLinks.map((link) => (

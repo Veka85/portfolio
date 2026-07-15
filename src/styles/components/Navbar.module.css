@@ -36,6 +36,12 @@
   color: var(--color-accent);
 }
 
+.navbar__logo {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
 .navbar__links {
   display: flex;
   gap: var(--space-lg);

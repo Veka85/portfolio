@@ -17,8 +17,8 @@ export default function ProjectCard({ title, description, technologies, codeUrl,
         </ul>
       </div>
       <div className={styles.card__actions}>
-        <Button href={codeUrl} variant="secondary">View Code</Button>
-        <Button href={demoUrl} variant="primary">Live Demo</Button>
+        {codeUrl && <Button href={codeUrl} variant="secondary">View Code</Button>}
+        <Button href={demoUrl} variant="primary">Visit Website</Button>
       </div>
     </article>
   )
