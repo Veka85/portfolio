@@ -103,6 +103,13 @@ export default function ContactSection() {
             >
               LinkedIn
             </a>
+            <a
+              href={socialLinks.email}
+              className={styles.contact__socialLink}
+              aria-label="Send email"
+            >
+              Email
+            </a>
           </div>
         </div>
         <form

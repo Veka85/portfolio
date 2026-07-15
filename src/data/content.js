@@ -274,6 +274,7 @@ export const blogPostsContent = {
 export const socialLinks = {
   github: 'https://github.com/Veka85',
   linkedin: 'https://www.linkedin.com/in/vedran-kovacevic-bl/',
+  email: 'mailto:vedrank85@gmail.com',
 }
 
 export const contactMessage = {
