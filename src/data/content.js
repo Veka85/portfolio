@@ -2,7 +2,7 @@ export const siteData = {
   headline: 'Building fast, scalable web applications that deliver real business value.',
   subtitle: 'I\'m a frontend-leaning full-stack developer with 10 years of experience building production websites, e-commerce platforms, internal tools, and custom CMS solutions.',
   techBadges: [ 'JavaScript', 'React', 'Next.js', 'Laravel', 'WordPress','E-commerce'],
-  cvUrl: '/cv.pdf',
+  cvUrl: '/VedranKovacevicCV.pdf',
 }
 
 export const aboutContent = {
@@ -272,8 +272,8 @@ export const blogPostsContent = {
 }
 
 export const socialLinks = {
-  github: 'https://github.com',
-  linkedin: 'https://linkedin.com',
+  github: 'https://github.com/Veka85',
+  linkedin: 'https://www.linkedin.com/in/vedran-kovacevic-bl/',
 }
 
 export const contactMessage = {
