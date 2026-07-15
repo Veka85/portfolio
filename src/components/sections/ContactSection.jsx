@@ -16,6 +16,8 @@ const initialErrors = {
   message: '',
 }
 
+const encode = (data) => new URLSearchParams(data).toString()
+
 export default function ContactSection() {
   const [formData, setFormData] = useState(initialFormState)
   const [errors, setErrors] = useState(initialErrors)
@@ -52,12 +54,27 @@ export default function ContactSection() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!validate()) return
-    console.log('Form submitted:', formData)
-    setFormData(initialFormState)
-    setErrors(initialErrors)
+
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({
+          'form-name': 'contact',
+          'bot-field': '',
+          ...formData,
+        }),
+      })
+
+      setFormData(initialFormState)
+      setErrors(initialErrors)
+      window.alert('Message sent successfully.')
+    } catch {
+      window.alert('Something went wrong. Please try again.')
+    }
   }
 
   return (
@@ -87,7 +104,17 @@ export default function ContactSection() {
             </a>
           </div>
         </div>
-        <form className={styles.contact__form} onSubmit={handleSubmit} noValidate>
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          className={styles.contact__form}
+          onSubmit={handleSubmit}
+          noValidate
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="bot-field" />
           <div className={styles.contact__field}>
             <label htmlFor="contact-name" className={styles.contact__label}>
               Name
