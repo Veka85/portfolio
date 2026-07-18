@@ -19,6 +19,7 @@ const initialErrors = {
 export default function ContactSection() {
   const [formData, setFormData] = useState(initialFormState)
   const [errors, setErrors] = useState(initialErrors)
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const validate = () => {
     const newErrors = { ...initialErrors }
@@ -72,7 +73,7 @@ export default function ContactSection() {
 
       setFormData(initialFormState)
       setErrors(initialErrors)
-      window.alert('Message sent successfully.')
+      setIsSubmitted(true)
     } catch {
       window.alert('Something went wrong. Please try again.')
     }
@@ -112,87 +113,100 @@ export default function ContactSection() {
             </a>
           </div>
         </div>
-        <form
-          name="contact"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          className={styles.contact__form}
-          onSubmit={handleSubmit}
-          noValidate
-        >
-          <input type="hidden" name="form-name" value="contact" />
-          <p hidden aria-hidden="true">
-            <label>
-              Do not fill this out:
-              <input name="bot-field" />
-            </label>
-          </p>
-          <div className={styles.contact__field}>
-            <label htmlFor="contact-name" className={styles.contact__label}>
-              Name
-            </label>
-            <input
-              type="text"
-              id="contact-name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className={styles.contact__input}
-              placeholder="Your name"
-              aria-invalid={!!errors.name}
-              aria-describedby={errors.name ? 'name-error' : undefined}
-            />
-            {errors.name && (
-              <span id="name-error" className={styles.contact__error} role="alert">
-                {errors.name}
-              </span>
-            )}
+        {isSubmitted ? (
+          <div className={styles.contact__success} role="status" aria-live="polite">
+            <h3 className={styles.contact__successTitle}>Thank you!</h3>
+            <p className={styles.contact__successText}>
+              Your message has been sent successfully.
+            </p>
+            <p className={styles.contact__successText}>
+              I&apos;ll get back to you as soon as possible, usually within 1–2 business
+              days.
+            </p>
           </div>
-          <div className={styles.contact__field}>
-            <label htmlFor="contact-email" className={styles.contact__label}>
-              Email
-            </label>
-            <input
-              type="email"
-              id="contact-email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={styles.contact__input}
-              placeholder="your@email.com"
-              aria-invalid={!!errors.email}
-              aria-describedby={errors.email ? 'email-error' : undefined}
-            />
-            {errors.email && (
-              <span id="email-error" className={styles.contact__error} role="alert">
-                {errors.email}
-              </span>
-            )}
-          </div>
-          <div className={styles.contact__field}>
-            <label htmlFor="contact-message" className={styles.contact__label}>
-              Message
-            </label>
-            <textarea
-              id="contact-message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              className={styles.contact__textarea}
-              placeholder="Your message"
-              rows={5}
-              aria-invalid={!!errors.message}
-              aria-describedby={errors.message ? 'message-error' : undefined}
-            />
-            {errors.message && (
-              <span id="message-error" className={styles.contact__error} role="alert">
-                {errors.message}
-              </span>
-            )}
-          </div>
-          <Button type="submit">Send Message</Button>
-        </form>
+        ) : (
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            className={styles.contact__form}
+            onSubmit={handleSubmit}
+            noValidate
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <p hidden aria-hidden="true">
+              <label>
+                Do not fill this out:
+                <input name="bot-field" />
+              </label>
+            </p>
+            <div className={styles.contact__field}>
+              <label htmlFor="contact-name" className={styles.contact__label}>
+                Name
+              </label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className={styles.contact__input}
+                placeholder="Your name"
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? 'name-error' : undefined}
+              />
+              {errors.name && (
+                <span id="name-error" className={styles.contact__error} role="alert">
+                  {errors.name}
+                </span>
+              )}
+            </div>
+            <div className={styles.contact__field}>
+              <label htmlFor="contact-email" className={styles.contact__label}>
+                Email
+              </label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className={styles.contact__input}
+                placeholder="your@email.com"
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? 'email-error' : undefined}
+              />
+              {errors.email && (
+                <span id="email-error" className={styles.contact__error} role="alert">
+                  {errors.email}
+                </span>
+              )}
+            </div>
+            <div className={styles.contact__field}>
+              <label htmlFor="contact-message" className={styles.contact__label}>
+                Message
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                className={styles.contact__textarea}
+                placeholder="Your message"
+                rows={5}
+                aria-invalid={!!errors.message}
+                aria-describedby={errors.message ? 'message-error' : undefined}
+              />
+              {errors.message && (
+                <span id="message-error" className={styles.contact__error} role="alert">
+                  {errors.message}
+                </span>
+              )}
+            </div>
+            <Button type="submit">Send Message</Button>
+          </form>
+        )}
       </div>
     </SectionWrapper>
   )
