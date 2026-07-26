@@ -71,7 +71,7 @@ export const projectsData = [
     description: 'Corporate website for Aserta Accounting Agency featuring custom functionality, responsive layouts, and performance optimization.',
     technologies: ['WordPress', 'PHP', 'CSS', 'JavaScript'],
     codeUrl: '',
-    demoUrl: '#',
+    demoUrl: 'https://aserta.ba',
   },
 ]
 
